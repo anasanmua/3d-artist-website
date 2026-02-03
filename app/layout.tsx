@@ -8,7 +8,7 @@ const _inter = Inter({ subsets: ["latin"] });
 const _spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Jaime Rosado Garcie | 3D Artist',
+  title: 'Jaime Rosado Garcie | 3D Technical Artist',
   description: 'Professional 3D Artist specializing in VFX, Animation, Rigging, Modeling, and Architectural Visualization',
   generator: 'v0.app',
   icons: {
