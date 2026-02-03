@@ -1,419 +1,395 @@
-import { Metadata } from "next";
-import Link from "next/link";
+"use client";
+
+import { Button } from "@/components/ui/button";
 import {
+  Download,
   Mail,
   Phone,
   MapPin,
   Calendar,
+  Globe,
   ExternalLink,
-  ArrowLeft,
-  Download,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-  title: "CV | Jaime Rosado Garcie - 3D Artist",
-  description:
-    "Professional CV of Jaime Rosado Garcie - 3D Artist & Technical Artist",
-};
-
-const skills = {
-  modeling: [
-    "Organic and hard surface modeling",
-    "High and low-poly optimization",
-    "Hand-painted and procedural textures",
-    "Stage lighting and rendering",
-  ],
-  technical: [
-    "Programming with Python and Vex",
-    "Tool creation for pipelines and HDAs",
-    "Environment development",
-    "Material and Landscape Shaders",
-  ],
-  unrealEngine: [
-    "Visual Effects (Niagara)",
-    "Blueprints",
-    "PCGs",
-    "Environment Artist",
-    "Level Design",
-  ],
-  animation: ["3D Animation", "Rigging", "Character Design", "Virtual Production"],
-};
-
-const software = [
-  "Blender",
-  "Maya",
-  "ZBrush",
-  "Houdini",
-  "Unreal Engine",
-  "Substance Painter",
-  "Substance Designer",
-  "Marvelous Designer",
-  "Photoshop",
-  "After Effects",
-];
-
-const experience = [
-  {
-    title: "Technical Artist",
-    company: "Electronic Arts",
-    type: "Online Internships",
-    period: "Sept - Nov 2025",
-    tasks: ["Technical Artist role"],
-  },
-  {
-    title: "Technical Artist",
-    company: "Andrea Europe S.L",
-    type: "",
-    period: "Jul - Oct 2023",
-    tasks: ["Graphic design", "Image Retouching", "Web Design"],
-  },
-  {
-    title: "3D Shop",
-    company: "White Dragon Tattoo Studios",
-    type: "Internships",
-    period: "March - June 2022",
-    tasks: ["Customised projects"],
-  },
-  {
-    title: "Freelance",
-    company: "Self-employed",
-    type: "",
-    period: "2020 - Present",
-    tasks: ["Architecture projects", "Short Films", "3D Covers"],
-  },
-];
-
-const education = [
-  {
-    degree: "Advanced Master's Degree",
-    field: "Technical Artist AAA Video Games",
-    school: "Voxel School",
-    location: "Madrid",
-    period: "2024-2025",
-  },
-  {
-    degree: "ESL Intensive English Program",
-    field: "",
-    school: "Red Rocks Community College",
-    location: "Colorado",
-    period: "2024",
-  },
-  {
-    degree: "Bachelor's Degree",
-    field: "3D Art, Animation and Visual Effects for Video Games and Films",
-    school: "Tesside University / CEV",
-    location: "Madrid",
-    period: "2020-2023",
-  },
-];
-
-const courses = [
-  {
-    name: "Unreal Engine Video Games Course",
-    provider: "ODIN 3D",
-    year: "2023",
-  },
-  {
-    name: "Unreal Engine Architecture Course",
-    provider: "Domestika",
-    year: "2023",
-  },
-];
-
-const shortfilms = [
-  { name: "INSEXCTS", url: "#" },
-  { name: "UNFOLLOW", url: "#" },
-];
 
 export default function CVPage() {
+  const handleDownloadPDF = () => {
+    window.print();
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Back to Portfolio</span>
-          </Link>
-          <Button variant="outline" size="sm" className="gap-2 bg-transparent">
-            <Download className="h-4 w-4" />
-            Download PDF
-          </Button>
-        </div>
-      </header>
+    <>
+      {/* Print styles */}
+      <style jsx global>{`
+        @media print {
+          @page {
+            size: A4;
+            margin: 0;
+          }
+          body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+          .print-container {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 0;
+            background: #0a0a0f !important;
+          }
+        }
+      `}</style>
+
+      {/* Download button - hidden in print */}
+      <div className="no-print fixed top-6 right-6 z-50">
+        <Button
+          onClick={handleDownloadPDF}
+          className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
+        >
+          <Download className="w-4 h-4" />
+          Descargar PDF
+        </Button>
+      </div>
 
       {/* CV Content */}
-      <main className="mx-auto max-w-5xl px-6 py-12">
-        {/* Hero Section */}
-        <section className="mb-12 rounded-xl border border-border bg-card p-8 md:p-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div className="print-container min-h-screen bg-background text-foreground p-8 md:p-12 lg:p-16 max-w-4xl mx-auto">
+        {/* Header */}
+        <header className="mb-8 pb-6 border-b border-border">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <h1 className="mb-2 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-                Jaime Rosado Garcie
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-2">
+                JAIME ROSADO GARCIE
               </h1>
-              <p className="mb-6 text-xl font-medium text-primary">
+              <p className="text-xl md:text-2xl text-primary font-medium">
                 3D Artist / Technical Artist
               </p>
-              <p className="max-w-xl leading-relaxed text-muted-foreground">
-                As a 3D artist, I apply technical skills and creativity developed
-                through projects in my 3D animation and interactive environments
-                courses. Notable projects include creating game-ready assets and
-                environments in Unreal Engine, as well as designing high-poly and
-                low-poly models for animation and visualization. My adaptability,
-                problem-solving, and teamwork ensure efficient, high-quality results
-                in 3D production.
-              </p>
             </div>
-            <div className="flex flex-col gap-3 text-sm">
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <Mail className="h-4 w-4 text-primary" />
-                <a
-                  href="mailto:jrosadogarcie@gmail.com"
-                  className="transition-colors hover:text-foreground"
-                >
-                  jrosadogarcie@gmail.com
-                </a>
+            <div className="flex flex-col gap-1.5 text-sm text-muted-foreground">
+              <a
+                href="mailto:jrosadogarcie@gmail.com"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Mail className="w-4 h-4 text-primary" />
+                jrosadogarcie@gmail.com
+              </a>
+              <a
+                href="tel:+34648670096"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                <Phone className="w-4 h-4 text-primary" />
+                +34 648 670 096
+              </a>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                Madrid, Spain
               </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>648 670 096</span>
-              </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span>Madrid, Spain</span>
-              </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <Calendar className="h-4 w-4 text-primary" />
-                <span>01/23/1999</span>
-              </div>
-              <div className="mt-2 flex gap-2">
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                  Spanish - Native
-                </span>
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                  English - Fluent
-                </span>
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                23/01/1999
               </div>
             </div>
           </div>
-        </section>
+        </header>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Main Content */}
-          <div className="space-y-8 lg:col-span-2">
-            {/* Experience */}
-            <section className="rounded-xl border border-border bg-card p-6 md:p-8">
-              <h2 className="mb-6 flex items-center gap-3 text-xl font-semibold text-foreground">
-                <span className="h-1 w-8 rounded-full bg-primary" />
+        {/* Two column layout */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Main content - 2 cols */}
+          <div className="md:col-span-2 space-y-8">
+            {/* About */}
+            <section>
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span className="w-8 h-px bg-primary" />
+                Profile
+              </h2>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                As a 3D artist, I apply technical skills and creativity
+                developed through projects in my 3D animation and interactive
+                environments courses. Notable projects include creating
+                game-ready assets and environments in Unreal Engine, as well as
+                designing high-poly and low-poly models for animation and
+                visualization. My adaptability, problem-solving, and teamwork
+                ensure efficient, high-quality results in 3D production.
+              </p>
+            </section>
+
+            {/* Work Experience */}
+            <section>
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                <span className="w-8 h-px bg-primary" />
                 Work Experience
               </h2>
-              <div className="space-y-6">
-                {experience.map((job, index) => (
-                  <div
-                    key={index}
-                    className="relative border-l-2 border-border pl-6 pb-6 last:pb-0"
-                  >
-                    <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-primary bg-background" />
-                    <div className="mb-1 flex flex-wrap items-center gap-2">
-                      <h3 className="font-semibold text-foreground">{job.title}</h3>
-                      {job.type && (
-                        <span className="rounded bg-primary/10 px-2 py-0.5 text-xs text-primary">
-                          {job.type}
-                        </span>
-                      )}
-                    </div>
-                    <p className="mb-1 text-sm font-medium text-primary">
-                      {job.company}
-                    </p>
-                    <p className="mb-2 text-xs text-muted-foreground">{job.period}</p>
-                    <ul className="space-y-1">
-                      {job.tasks.map((task, i) => (
-                        <li
-                          key={i}
-                          className="text-sm text-muted-foreground before:mr-2 before:text-primary before:content-['•']"
-                        >
-                          {task}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div className="space-y-5">
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    Technical Artist Intern
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    Electronic Arts
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Sept - Nov 2025 | Online
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Technical artist internship focusing on pipeline tools and
+                    technical art solutions.
+                  </p>
+                </div>
+
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    Technical Artist
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    Andrea Europe S.L
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Jul - Oct 2023
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Graphic design</li>
+                    <li>• Image Retouching</li>
+                    <li>• Web Design</li>
+                  </ul>
+                </div>
+
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">3D Artist</h3>
+                  <p className="text-primary text-sm font-medium">
+                    White Dragon Tattoo Studios
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Mar - Jun 2022 | Internship
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Customised 3D projects and visualization work.
+                  </p>
+                </div>
+
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    Freelance 3D Artist
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    Self-employed
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    2020 - Present
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Architecture projects</li>
+                    <li>• Short Films</li>
+                    <li>• 3D Covers</li>
+                  </ul>
+                </div>
               </div>
             </section>
 
             {/* Education */}
-            <section className="rounded-xl border border-border bg-card p-6 md:p-8">
-              <h2 className="mb-6 flex items-center gap-3 text-xl font-semibold text-foreground">
-                <span className="h-1 w-8 rounded-full bg-primary" />
+            <section>
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                <span className="w-8 h-px bg-primary" />
                 Education
               </h2>
-              <div className="space-y-6">
-                {education.map((edu, index) => (
-                  <div
-                    key={index}
-                    className="relative border-l-2 border-border pl-6 pb-6 last:pb-0"
-                  >
-                    <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-primary bg-background" />
-                    <h3 className="font-semibold text-foreground">{edu.degree}</h3>
-                    {edu.field && (
-                      <p className="text-sm text-muted-foreground">{edu.field}</p>
-                    )}
-                    <p className="text-sm font-medium text-primary">{edu.school}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {edu.location} • {edu.period}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <div className="space-y-4">
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    Advanced Master&apos;s Degree - Technical Artist AAA Video
+                    Games
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    Voxel School
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    2024 - 2025 | Madrid
+                  </p>
+                </div>
 
-              {/* Additional Courses */}
-              <div className="mt-8 border-t border-border pt-6">
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                  Additional Courses
-                </h3>
-                <div className="space-y-3">
-                  {courses.map((course, index) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-foreground">
-                          {course.name}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {course.provider}
-                        </p>
-                      </div>
-                      <span className="text-xs text-muted-foreground">
-                        {course.year}
-                      </span>
-                    </div>
-                  ))}
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    ESL Intensive English Program
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    Red Rocks Community College
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    2024 | Colorado, USA
+                  </p>
+                </div>
+
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    Bachelor&apos;s Degree - 3D Art, Animation and Visual
+                    Effects
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    Teesside University / CEV
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    2020 - 2023 | Madrid
+                  </p>
+                </div>
+
+                <div className="relative pl-4 border-l-2 border-border hover:border-primary transition-colors">
+                  <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                  <h3 className="font-semibold text-foreground">
+                    Online Courses
+                  </h3>
+                  <p className="text-primary text-sm font-medium">
+                    ODIN 3D & Domestika
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Unreal Engine Video Games & Architecture (2023)
+                  </p>
                 </div>
               </div>
             </section>
           </div>
 
-          {/* Sidebar */}
+          {/* Sidebar - 1 col */}
           <div className="space-y-6">
-            {/* Software */}
-            <section className="rounded-xl border border-border bg-card p-6">
-              <h2 className="mb-4 flex items-center gap-3 text-lg font-semibold text-foreground">
-                <span className="h-1 w-6 rounded-full bg-primary" />
-                Software
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {software.map((sw) => (
-                  <span
-                    key={sw}
-                    className="rounded-md border border-border bg-secondary px-3 py-1.5 text-xs font-medium text-foreground"
-                  >
-                    {sw}
-                  </span>
-                ))}
-              </div>
-            </section>
-
             {/* Skills */}
-            <section className="rounded-xl border border-border bg-card p-6">
-              <h2 className="mb-4 flex items-center gap-3 text-lg font-semibold text-foreground">
-                <span className="h-1 w-6 rounded-full bg-primary" />
-                Skills
+            <section className="bg-card p-5 rounded-lg border border-border">
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-4">
+                Technical Skills
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                    Modeling & Texturing
+                  <h3 className="text-sm font-medium text-foreground mb-2">
+                    Modeling
                   </h3>
-                  <ul className="space-y-1">
-                    {skills.modeling.map((skill) => (
-                      <li key={skill} className="text-sm text-muted-foreground">
-                        {skill}
-                      </li>
-                    ))}
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• Organic and hard surface modeling</li>
+                    <li>• High/low-poly optimization</li>
+                    <li>• Hand-painted & procedural textures</li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                    Technical
-                  </h3>
-                  <ul className="space-y-1">
-                    {skills.technical.map((skill) => (
-                      <li key={skill} className="text-sm text-muted-foreground">
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
+                  <h3 className="text-sm font-medium text-foreground mb-2">
                     Unreal Engine
                   </h3>
-                  <ul className="space-y-1">
-                    {skills.unrealEngine.map((skill) => (
-                      <li key={skill} className="text-sm text-muted-foreground">
-                        {skill}
-                      </li>
-                    ))}
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• Environment development</li>
+                    <li>• Material & Landscape Shaders</li>
+                    <li>• Visual Effects (Niagara)</li>
+                    <li>• Blueprints & PCGs</li>
+                    <li>• Level Design</li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                    Animation
+                  <h3 className="text-sm font-medium text-foreground mb-2">
+                    Animation & Rigging
                   </h3>
-                  <ul className="space-y-1">
-                    {skills.animation.map((skill) => (
-                      <li key={skill} className="text-sm text-muted-foreground">
-                        {skill}
-                      </li>
-                    ))}
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• 3D Animation</li>
+                    <li>• Rigging</li>
+                    <li>• Character Design</li>
+                    <li>• Virtual Production</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium text-foreground mb-2">
+                    Technical
+                  </h3>
+                  <ul className="text-xs text-muted-foreground space-y-1">
+                    <li>• Python & Vex programming</li>
+                    <li>• Pipeline tools & HDAs</li>
+                    <li>• Stage lighting & rendering</li>
                   </ul>
                 </div>
               </div>
             </section>
 
-            {/* Portfolio Links */}
-            <section className="rounded-xl border border-border bg-card p-6">
-              <h2 className="mb-4 flex items-center gap-3 text-lg font-semibold text-foreground">
-                <span className="h-1 w-6 rounded-full bg-primary" />
-                Portfolio
+            {/* Software */}
+            <section className="bg-card p-5 rounded-lg border border-border">
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-3">
+                Software
               </h2>
-              <div className="space-y-3">
-                <a
-                  href="/"
-                  className="flex items-center justify-between rounded-lg border border-border bg-secondary p-3 transition-colors hover:border-primary"
-                >
-                  <span className="text-sm font-medium text-foreground">
-                    Demo Reel
-                  </span>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                </a>
-                {shortfilms.map((film) => (
-                  <a
-                    key={film.name}
-                    href={film.url}
-                    className="flex items-center justify-between rounded-lg border border-border bg-secondary p-3 transition-colors hover:border-primary"
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Unreal Engine",
+                  "Maya",
+                  "Blender",
+                  "Houdini",
+                  "ZBrush",
+                  "Substance Painter",
+                  "Photoshop",
+                  "After Effects",
+                ].map((software) => (
+                  <span
+                    key={software}
+                    className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded"
                   >
-                    <span className="text-sm font-medium text-foreground">
-                      {film.name}
-                    </span>
-                    <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                  </a>
+                    {software}
+                  </span>
                 ))}
+              </div>
+            </section>
+
+            {/* Languages */}
+            <section className="bg-card p-5 rounded-lg border border-border">
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-3">
+                Languages
+              </h2>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-foreground">Spanish</span>
+                  <span className="text-xs text-primary">Native</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-foreground">English</span>
+                  <span className="text-xs text-primary">Fluent</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Links */}
+            <section className="bg-card p-5 rounded-lg border border-border">
+              <h2 className="text-lg font-semibold text-primary uppercase tracking-wider mb-3">
+                Portfolio & Reels
+              </h2>
+              <div className="space-y-2">
+                <a
+                  href="https://jrosadogarcie.wixsite.com/jaimerosadogarcie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Globe className="w-4 h-4" />
+                  Portfolio Website
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+                <a
+                  href="#"
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Demo Reel
+                </a>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Short Films: INSEXCTS, UNFOLLOW
+                </p>
               </div>
             </section>
           </div>
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-card/50 py-6">
-        <div className="mx-auto max-w-5xl px-6 text-center text-sm text-muted-foreground">
-          <p>Jaime Rosado Garcie - 3D Artist / Technical Artist</p>
-        </div>
-      </footer>
-    </div>
+        {/* Footer */}
+        <footer className="mt-8 pt-4 border-t border-border text-center">
+          <p className="text-xs text-muted-foreground">
+            Jaime Rosado Garcie | 3D Artist & Technical Artist |
+            jrosadogarcie@gmail.com
+          </p>
+        </footer>
+      </div>
+    </>
   );
 }
