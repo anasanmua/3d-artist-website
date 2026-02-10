@@ -25,7 +25,7 @@ export const categories = [
 export const projects: Project[] = [
   {
     id: "vfx-explosion",
-    title: "Cinematic Explosion FX",
+    title: "VFX for Character Attack",
     category: "VFX",
     description: "Real-time explosion and debris effects created for a AAA game project. Features dynamic lighting, volumetric smoke, and particle systems.",
     thumbnail: "/placeholder.svg?height=600&width=800",
