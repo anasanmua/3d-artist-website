@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { YouTubePlayer } from "@/components/youtube-player"
 import { projects, getProjectById } from "@/lib/projects"
 import type { Metadata } from "next"
 
@@ -75,19 +76,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
 
           {/* Main Image/Video Area */}
-          <div className="relative aspect-video rounded-lg overflow-hidden bg-card border border-border mb-12">
+          <div className="relative rounded-lg overflow-hidden bg-card border border-border mb-12">
             {project.videoUrl ? (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Video placeholder - embed your video here</p>
-              </div>
-            ) : (
-              <Image
-                src={project.thumbnail || "/placeholder.svg"}
-                alt={project.title}
-                fill
-                className="object-cover"
-                priority
+              <YouTubePlayer
+                videoId={project.videoUrl}
+                title={project.title}
+                className="rounded-lg"
               />
+            ) : (
+              <div className="relative aspect-video">
+                <Image
+                  src={project.thumbnail || "/placeholder.svg"}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             )}
           </div>
 
