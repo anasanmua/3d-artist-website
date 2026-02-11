@@ -57,10 +57,9 @@ export function PortfolioGrid() {
               href={`/project/${project.id}`}
               className="group relative bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300"
             >
-              {/* Thumbnail */}
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
-                  src={project.thumbnail || "/placeholder.svg"}
+                  src={`/cover/${project.cardImage}` || "/placeholder.svg"}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
