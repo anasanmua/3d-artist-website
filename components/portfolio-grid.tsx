@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Play } from "lucide-react"
 import { projects, categories } from "@/lib/projects"
 import { cn } from "@/lib/utils"
 
@@ -65,6 +65,11 @@ export function PortfolioGrid() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                {project.videoUrl && (
+                  <div className="absolute top-3 right-3 flex items-center justify-center w-9 h-9 rounded-full bg-primary/90 shadow-md z-10">
+                    <Play className="h-4 w-4 text-primary-foreground ml-0.5" />
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="flex items-center gap-2 text-foreground">
                     <span className="text-sm font-medium">View Project</span>
