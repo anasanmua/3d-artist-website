@@ -1,53 +1,56 @@
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { YouTubePlayer } from "@/components/youtube-player"
-import { projects, getProjectById } from "@/lib/projects"
-import type { Metadata } from "next"
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft, ArrowUpRight, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { YouTubePlayer } from "@/components/youtube-player";
+import { projects, getProjectById } from "@/lib/projects";
+import type { Metadata } from "next";
 
 interface ProjectPageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
     id: project.id,
-  }))
+  }));
 }
 
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { id } = await params
-  const project = getProjectById(id)
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const project = getProjectById(id);
 
   if (!project) {
     return {
       title: "Project Not Found",
-    }
+    };
   }
 
   return {
     title: `${project.title} | Jaime Rosado Garcie`,
     description: project.description,
-  }
+  };
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { id } = await params
-  const project = getProjectById(id)
+  const { id } = await params;
+  const project = getProjectById(id);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
   // Find related projects (same category, excluding current)
   const relatedProjects = projects
     .filter((p) => p.category === project.category && p.id !== project.id)
-    .slice(0, 3)
+    .slice(0, 3);
 
+  console.log(project.galleryImages);
   return (
     <>
       <Header />
@@ -106,23 +109,41 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {project.details || project.description}
                 </p>
               </div>
-
               {/* Gallery placeholder */}
               <div className="mt-12">
                 <h3 className="text-lg font-semibold mb-6">Gallery</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="aspect-video bg-secondary rounded-lg border border-border flex items-center justify-center"
-                    >
-                      <p className="text-xs text-muted-foreground">Image {i}</p>
-                    </div>
-                  ))}
+                  {project.galleryVideos &&
+                    project.galleryVideos.map((i) => (
+                      <div
+                        key={i}
+                        className="aspect-video bg-secondary rounded-lg border border-border flex items-center justify-center"
+                      >
+                        <YouTubePlayer
+                          key={i}
+                          videoId={i}
+                          title={"testing title"}
+                        />{" "}
+                      </div>
+                    ))}
+                  {project.galleryImages &&
+                    project.galleryImages.map((i) => (
+                      <div
+                        key={i}
+                        className="relative aspect-video bg-secondary rounded-lg border border-border overflow-hidden"
+                      >
+                        <Image
+                          src={`/gallery/${i}`}
+                          alt={"hello"}
+                          width="500"
+                          height="200"
+                          priority
+                        />
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
-
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Tools & Software */}
@@ -148,13 +169,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   Links
                 </h3>
                 <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-between bg-transparent" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-between bg-transparent"
+                    asChild
+                  >
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       ArtStation
                       <ExternalLink className="h-4 w-4" />
                     </a>
                   </Button>
-                  <Button variant="outline" className="w-full justify-between bg-transparent" asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-between bg-transparent"
+                    asChild
+                  >
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       YouTube Demo
                       <ExternalLink className="h-4 w-4" />
@@ -165,7 +194,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
               {/* Contact CTA */}
               <div className="bg-primary/10 p-6 rounded-lg border border-primary/20">
-                <h3 className="font-semibold mb-2 text-foreground">Interested in similar work?</h3>
+                <h3 className="font-semibold mb-2 text-foreground">
+                  Interested in similar work?
+                </h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   Let&apos;s discuss your project and see how I can help.
                 </p>
@@ -213,5 +244,5 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </main>
       <Footer />
     </>
-  )
+  );
 }

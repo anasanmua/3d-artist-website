@@ -9,6 +9,8 @@ export interface Project {
   videoUrl?: string;
   images?: string[];
   details?: string;
+  galleryImages?: string[];
+  galleryVideos?: string[];
 }
 
 export const categories = [
@@ -29,6 +31,12 @@ export const projects: Project[] = [
     title: "VFX for Character Attack",
     category: "VFX",
     cardImage: "vfx.png",
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM", "https://www.youtube.com/watch?v=JGQmourtGYI"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Real-time explosion and debris effects created for a AAA game project. Features dynamic lighting, volumetric smoke, and particle systems.",
     thumbnail: "/placeholder.svg?height=600&width=800",
@@ -42,6 +50,12 @@ export const projects: Project[] = [
     title: "Character Combat System",
     category: "Animation",
     cardImage: "vfx.png", // aquí CAMBIAR imagen
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Full combat animation system with blend trees, state machines, and procedural reactions for a third-person action game.",
     thumbnail: "/placeholder.svg?height=600&width=800",
@@ -55,6 +69,12 @@ export const projects: Project[] = [
     title: "Quadruped Creature Rig",
     category: "Rigging",
     cardImage: "vfx.png", // aquí CAMBIAR imagen
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Advanced quadruped rig with muscle simulation, facial controls, and dynamic secondary motion systems.",
     thumbnail: "/placeholder.svg?height=600&width=800",
@@ -64,15 +84,21 @@ export const projects: Project[] = [
       "Custom rigging solution for a fantasy creature featuring IK/FK blending, space switching, and an intuitive control scheme for animators.",
   },
   {
-    id: "scifi-environment",
-    title: "Sci-Fi Station Interior",
+    id: "shaders",
+    title: "Shaders",
     category: "Modeling",
-    cardImage: "vfx.png", // aquí CAMBIAR imagen
+    cardImage: "Shaders.png",
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Modular sci-fi space station environment with PBR materials and optimized for real-time rendering.",
     thumbnail: "/placeholder.svg?height=600&width=800",
     tags: ["Blender", "Substance Painter", "Unreal Engine"],
-    videoUrl: "", // Paste YouTube URL here
+    videoUrl: "https://www.youtube.com/watch?v=yuc5ra19jAw",
     details:
       "A fully modular environment kit with over 200 unique assets. Designed for optimal performance while maintaining AAA visual quality.",
   },
@@ -81,6 +107,12 @@ export const projects: Project[] = [
     title: "Luxury Residential Tower",
     category: "Architecture",
     cardImage: "vfx.png", // aquí CAMBIAR imagen
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Photorealistic architectural visualization for a high-rise residential project with interior and exterior views.",
     thumbnail: "/placeholder.svg?height=600&width=800",
@@ -90,36 +122,54 @@ export const projects: Project[] = [
       "Complete architectural visualization package including exterior renders, interior walkthroughs, and aerial drone-style animations.",
   },
   {
-    id: "procedural-city",
-    title: "Procedural City Generator",
+    id: "cutting-grass-mechanic",
+    title: "Cutting Grass Mechanic",
     category: "Procedural Tools",
-    cardImage: "vfx.png", // aquí CAMBIAR imagen
+    cardImage: "CuttingGrassMechanic.png",
+    galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+    galleryImages: [
+      "cutting-grass-1.png",
+      "cutting-grass-2.png",
+      "cutting-grass-3.png",
+    ],
     description:
       "Houdini-based procedural tool for generating infinite urban environments with customizable building styles.",
     thumbnail: "/placeholder.svg?height=600&width=800",
     tags: ["Houdini", "Python", "Unreal Engine"],
-    videoUrl: "", // Paste YouTube URL here
+    videoUrl: "https://www.youtube.com/watch?v=xWu4G5J24Ts",
     details:
       "A powerful procedural system that generates unique cityscapes with adjustable parameters for building density, height variation, and architectural styles.",
   },
   {
-    id: "realtime-character",
-    title: "Real-Time Character",
+    id: "procedural-biome-creation",
+    title: "Procedural Biome Creation Tool",
     category: "Real Time",
-    cardImage: "vfx.png", // aquí CAMBIAR imagen
+    cardImage: "ProceduralBiomeCreationTool.png",
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Game-ready character with full facial rig, clothing simulation, and optimized for mobile and console platforms.",
     thumbnail: "/placeholder.svg?height=600&width=800",
     tags: ["ZBrush", "Marvelous Designer", "Unreal Engine"],
-    videoUrl: "", // Paste YouTube URL here
+    videoUrl: "https://www.youtube.com/watch?v=FzrGe1QIAEo",
     details:
       "High-fidelity game character optimized for multiple platforms with LOD system and performance-conscious material setup.",
   },
   {
-    id: "concept-vehicle",
+    id: "export-tool-project",
     title: "Export Tool Blender",
     category: "Concepts",
-    cardImage: "vfx.png", // aquí CAMBIAR imagen
+    cardImage: "exportTool.png",
+      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
+      galleryImages: [
+          "cutting-grass-1.png",
+          "cutting-grass-2.png",
+          "cutting-grass-3.png",
+      ],
     description:
       "Futuristic vehicle concept with full 3D blockout, refined model, and presentation renders.",
     thumbnail: "/placeholder.svg?height=600&width=800",
