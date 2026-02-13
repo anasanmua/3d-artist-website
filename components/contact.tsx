@@ -124,6 +124,8 @@ export function Contact() {
                         </div>
 
 
+
+
                         {/* Ubicación */}
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <MapPin className="h-6 w-6 text-primary" />
