@@ -91,7 +91,7 @@ export const projects: Project[] = [
     tags: ["Maya", "Python", "Muscle System"],
     videoUrl: "https://www.youtube.com/watch?v=PB08dnmL69U", // Paste YouTube URL here
     details:
-      "Right now the AI can: Patrol between points. Detect the player within a defined range. Switch states depending on player presence React in a way that supports gameplay, not just visuals.",
+      "WIP: Right now the AI can: Patrol between points. Detect the player within a defined range. Switch states depending on player presence React in a way that supports gameplay, not just visuals.",
   },
   {
     id: "shaders",
@@ -112,12 +112,12 @@ export const projects: Project[] = [
           "MI AGUA .png",
       ],
     description:
-      "Modular sci-fi space station environment with PBR materials and optimized for real-time rendering.",
+      "This project showcases a real-time shader and render study focused on visual quality, lighting interaction, and material definition. The piece highlights surface detail, reflections, and overall mood through a cinematic presentation designed to emphasize realism and atmosphere.",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    tags: ["Blender", "Substance Painter", "Unreal Engine"],
+    tags: ["Unreal Engine", "Real Time"],
     videoUrl: "https://www.youtube.com/watch?v=yuc5ra19jAw",
     details:
-      "A fully modular environment kit with over 200 unique assets. Designed for optimal performance while maintaining AAA visual quality.",
+      "In this shader, I used vertex color, wetness, and dot product, combining them to achieve different effects on my objects.",
   },
   {
     id: "ui-basics",
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     description:
       "UI Basics in Unreal Engine, including health bars, stamina bars, Item Collection Counter and a sprinting system. The UI elements are designed to be clear and responsive, providing players with essential information about their character's status during gameplay.",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    tags: ["3ds Max", "V-Ray", "Corona"],
+    tags: [ "UnrealEngine", "UI/UX"],
     videoUrl: "https://www.youtube.com/watch?v=X2WQPjlmhOc", // Paste YouTube URL here
     details:
       " Gameplay logic lives in the Character Blueprint, while UI updates are handled in a Widget Blueprint using normalized values and event-based updates for efficiency.This phase is about getting systems solid first, then iterating on visual polish and UX clarity.",
@@ -148,63 +148,54 @@ export const projects: Project[] = [
     galleryImages: [
       "material-planta-cut.png",
       "mf-cutgrass.png",
-      "characterplano.png",
-      "characterplanortv.png",
-      "meshON.png",
-      "meshOFF.png",
-      "animnotibegin.png",
-      "animnotiend.png",
-      "logicainstancias.png",
-      "checkbox.png",
-      "checkbox2.png",
-
-
-    ],
+      "logica-instancia-plano.png",
+      "plano-instancia-character.png",
+      "materialON.png",
+      "materialOFF.png",
+      "vfxlogicut.png",
+      "vfxlogicut2.png",
+      "animbegin.png",
+      "animend.png",
+      "profiling.png",
+      "profiling2.png",
+      ],
     description:
       "Interactive foliage system where vegetation responds physically to character attacks through the use of Runtime Virtual Textures (RVT), creating dynamic environmental interaction and enhanced scene realism.",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    tags: ["Python", "Unreal Engine" , "Real Time"],
+    tags: ["Unreal Engine" , "Real Time"],
     videoUrl: "https://www.youtube.com/watch?v=xWu4G5J24Ts",
     details:
-      "A powerful procedural system that generates unique cityscapes with adjustable parameters for building density, height variation, and architectural styles.",
+      "The mechanic for creating a mask using RVT is executed when the character attacks and an instance of a plane is created, since RVTs are not temporary and, without creating a plane that projects this mask, the cut would not be permanent. When attacking, the character can interact with the surrounding grass, causing it to be cut and change color, giving the sensation of being frozen.",
   },
   {
     id: "procedural-biome-creation",
     title: "Procedural Biome Creation Tool",
     category: "Tools",
     cardImage: "ProceduralBiomeCreationTool.png",
-      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
-      galleryImages: [
-          "cutting-grass-1.png",
-          "cutting-grass-2.png",
-          "cutting-grass-3.png",
-      ],
+      galleryVideos: [],
+      galleryImages: [],
     description:
-      "Game-ready character with full facial rig, clothing simulation, and optimized for mobile and console platforms.",
+      "A procedural tool designed to generate closed splines for the purpose of streamlining the creation of biomes. It supports up to four fully customizable biome types, configurable through numerical parameters, percentages, and mesh swapping.",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    tags: ["ZBrush", "Marvelous Designer", "Unreal Engine"],
+    tags: ["Unreal Engine", "Real Time"],
     videoUrl: "https://www.youtube.com/watch?v=FzrGe1QIAEo",
     details:
-      "High-fidelity game character optimized for multiple platforms with LOD system and performance-conscious material setup.",
+      "The tool also includes an open spline that can be used as a path. When this path crosses the closed splines of any biome, it subtracts their information, allowing the biome to adapt and respect the route of the path. This path is also fully customizable and automatically conforms to the terrain’s height. Additionally, the tool features a Landscape Material that allows you to paint different texture types, which in turn generate geometry depending on the selected biome. Painting is performed exclusively in Landscape Paint Mode.",
   },
   {
     id: "export-tool-project",
     title: "Export Blender Tool",
     category: "Tools",
     cardImage: "exportTool.png",
-      galleryVideos: ["https://www.youtube.com/watch?v=DFUJJkmd5DM"],
-      galleryImages: [
-          "cutting-grass-1.png",
-          "cutting-grass-2.png",
-          "cutting-grass-3.png",
-      ],
+      galleryVideos: [],
+      galleryImages: [],
     description:
-      "Futuristic vehicle concept with full 3D blockout, refined model, and presentation renders.",
+      "Blender Export Tool is an add-on for Blender that streamlines the export of assets with hierarchy, collisions, and LODs (up to 10 LODs with a custom mesh reduction percentage), as well as materials and applied transformations. It is ideal for artists and developers who import models from other software and want to export them to FBX or OBJ without issues related to scale, position, or materials.",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    tags: ["Blender", "KeyShot", "Photoshop"],
+    tags: ["Blender"],
     videoUrl: "https://www.youtube.com/watch?v=PaOvpJxmmvg",
     details:
-      "From initial sketch to final presentation, this project showcases the complete concept design pipeline for a futuristic hover vehicle.",
+      "FeaturesEport of selected objects with full hierarchy.Automatic creation of UCX collisions if they do not exist.Automatic LOD generation using the Decimate modifier.Application of Weighted Normals to meshes.Automatic material assignment if materials do not exist.Button to apply all transformations (Ctrl+A) to the selected objects.Export to FBX and OBJ formats.Flexible configuration of names, paths, number of LODs, and reduction ratios.UsageSelect the objects you want to export.Press the “Apply Transformations (Ctrl+A)” button if the object comes from another software. This applies location, rotation, and scale.Configure the asset name, export path, collisions, LODs, and format.Click “Export Asset” to generate the files.",
   },
   {
     id: "demoreel",
@@ -214,12 +205,12 @@ export const projects: Project[] = [
       galleryVideos: [],
       galleryImages: [],
     description:
-      "Futuristic vehicle concept with full 3D blockout, refined model, and presentation renders.",
+      "3D animation demo reel developed in Autodesk Maya and Unreal Engine, focused on character animation, acting performance, body mechanics, and real-time cinematics.",
     thumbnail: "/placeholder.svg?height=600&width=800",
-    tags: ["Blender", "KeyShot", "Photoshop"],
+    tags: ["Autodesk Maya", "UnrealEngine", "ZBrush",  "Photoshop",],
     videoUrl: "https://www.youtube.com/watch?v=nRqz9fQOOfk",
     details:
-      "From initial sketch to final presentation, this project showcases the complete concept design pipeline for a futuristic hover vehicle.",
+      "",
   },
 ];
 
