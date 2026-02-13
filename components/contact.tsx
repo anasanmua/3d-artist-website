@@ -107,15 +107,19 @@ export function Contact() {
                             <Github className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">GitHub</p>
+
                                 <a
-                                    href="https://github.com/tuusuario"
+                                    href="https://github.com/jrosadogarcie"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     className="text-lg font-medium hover:text-primary transition"
                                 >
-                                    https://github.com/jrosadogarcie/Blender-Export-Tool/tree/main
+                                    github.com/jrosadogarcie
                                 </a>
+
                             </div>
                         </div>
+
 
                         {/* Ubicación */}
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
