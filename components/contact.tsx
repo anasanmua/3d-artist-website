@@ -71,13 +71,16 @@ export function Contact() {
                             <MessageCircle className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">WhatsApp</p>
+
                                 <a
-                                    href="https://wa.me/34600123456"
+                                    href="https://wa.me/34648670096"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     className="text-lg font-medium hover:text-primary transition"
                                 >
                                     Enviar mensaje por WhatsApp
                                 </a>
+
                             </div>
                         </div>
 
