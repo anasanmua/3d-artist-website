@@ -1,5 +1,8 @@
+"use client"
+
 import { Linkedin, Mail, Globe } from "lucide-react"
 import Link from "next/link"
+import { useInView } from "@/lib/useInView"
 
 const skills = [
   { category: "3D Software", items: ["Maya", "Blender", "3ds Max", "ZBrush", "Houdini"] },
@@ -15,12 +18,16 @@ const socialLinks = [
 ]
 
 export function About() {
+  const { ref, isInView } = useInView({ threshold: 0.2 })
+
   return (
-    <section id="about" className="py-24 md:py-32 bg-card">
+    <section ref={ref} id="about" className="py-24 md:py-32 bg-card">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Column - Bio */}
-          <div>
+          <div className={`transition-all duration-700 ${
+            isInView ? "animate-slide-left" : "opacity-0-start"
+          }`}>
             <p className="text-primary font-mono text-sm tracking-widest uppercase mb-3">
               About
             </p>
@@ -60,11 +67,19 @@ export function About() {
           </div>
 
           {/* Right Column - Skills */}
-          <div>
+          <div className={`transition-all duration-700 ${
+            isInView ? "animate-slide-up" : "opacity-0-start translate-y-10-start"
+          }`}>
             <h3 className="text-xl font-semibold mb-6">Skills & Tools</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {skills.map((skillGroup) => (
-                <div key={skillGroup.category}>
+              {skills.map((skillGroup, index) => (
+                <div 
+                  key={skillGroup.category}
+                  className={`transition-all duration-700 ${
+                    isInView ? "animate-fade-in" : "opacity-0-start"
+                  }`}
+                  style={isInView ? { animationDelay: `${(index + 1) * 100}ms` } : {}}
+                >
                   <h4 className="text-sm font-mono text-primary uppercase tracking-wider mb-3">
                     {skillGroup.category}
                   </h4>
@@ -85,15 +100,24 @@ export function About() {
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-border">
-              <div>
+              <div className={`transition-all duration-700 ${
+                isInView ? "animate-scale" : "opacity-0-start"
+              }`}
+              style={isInView ? { animationDelay: "200ms" } : {}}>
                 <p className="text-3xl font-bold text-foreground">8+</p>
                 <p className="text-sm text-muted-foreground">Years Experience</p>
               </div>
-              <div>
+              <div className={`transition-all duration-700 ${
+                isInView ? "animate-scale" : "opacity-0-start"
+              }`}
+              style={isInView ? { animationDelay: "300ms" } : {}}>
                 <p className="text-3xl font-bold text-foreground">50+</p>
                 <p className="text-sm text-muted-foreground">Projects</p>
               </div>
-              <div>
+              <div className={`transition-all duration-700 ${
+                isInView ? "animate-scale" : "opacity-0-start"
+              }`}
+              style={isInView ? { animationDelay: "400ms" } : {}}>
                 <p className="text-3xl font-bold text-foreground">20+</p>
                 <p className="text-sm text-muted-foreground">Clients</p>
               </div>

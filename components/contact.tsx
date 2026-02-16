@@ -1,16 +1,32 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { Phone, Mail, User, MapPin, Github, Linkedin, MessageCircle } from "lucide-react"
+import { useInView } from "@/lib/useInView"
 
 export function Contact() {
+    const { ref, isInView } = useInView({ threshold: 0.2 })
+    const [copiedEmail, setCopiedEmail] = useState(false)
+
+    const handleCopyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText("jrosadogarcie@gmail.com")
+            setCopiedEmail(true)
+            setTimeout(() => setCopiedEmail(false), 2000)
+        } catch (err) {
+            console.error("Error al copiar:", err)
+        }
+    }
+
     return (
-        <section id="contact" className="py-24 md:py-32">
+        <section ref={ref} id="contact" className="py-24 md:py-32">
             <div className="container mx-auto px-6">
                 <div className="max-w-3xl mx-auto">
 
                     {/* Header */}
-                    <div className="text-center mb-12">
+                    <div className={`text-center mb-12 transition-all duration-700 ${
+                        isInView ? "animate-slide-up" : "opacity-0-start translate-y-10-start"
+                    }`}>
                         <p className="text-primary font-mono text-sm tracking-widest uppercase mb-3">
                             Contacto
                         </p>
@@ -28,7 +44,10 @@ export function Contact() {
                     <div className="space-y-6">
 
                         {/* Nombre */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "100ms" } : {}}>
                             <User className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">Nombre</p>
@@ -39,7 +58,10 @@ export function Contact() {
                         </div>
 
                         {/* Teléfono */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "200ms" } : {}}>
                             <Phone className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">Teléfono</p>
@@ -53,21 +75,39 @@ export function Contact() {
                         </div>
 
                         {/* Email */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "300ms" } : {}}>
                             <Mail className="h-6 w-6 text-primary" />
-                            <div>
-                                <p className="text-sm text-muted-foreground">Email</p>
-                                <a
-                                    href="mailto:tu@email.com"
-                                    className="text-lg font-medium hover:text-primary transition"
-                                >
-                                    jrosadogarcie@gmail.com
-                                </a>
+                            <div className="flex-1">
+                                <p className="text-sm text-muted-foreground mb-3">Email</p>
+                                <div className="flex flex-wrap gap-3">
+                                    <a
+                                        href="https://mail.google.com/mail/?view=cm&fs=1&to=jrosadogarcie@gmail.com&su=Proyectos%20y%20Colaboraciones"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-3 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition text-xs font-medium"
+                                    >
+                                        Gmail
+                                    </a>
+                                    <button
+                                        onClick={handleCopyEmail}
+                                        className="px-3 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition text-xs font-medium"
+                                        title="Copiar al portapapeles"
+                                    >
+                                        {copiedEmail ? "✓ Copiado!" : "Copiar email"}
+                                    </button>
+                                </div>
+                                <p className="text-xs text-muted-foreground mt-3">jrosadogarcie@gmail.com</p>
                             </div>
                         </div>
 
                         {/* WhatsApp */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "400ms" } : {}}>
                             <MessageCircle className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">WhatsApp</p>
@@ -85,7 +125,10 @@ export function Contact() {
                         </div>
 
                         {/* LinkedIn */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "500ms" } : {}}>
                             <Linkedin className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">LinkedIn</p>
@@ -106,7 +149,10 @@ export function Contact() {
 
 
                         {/* GitHub */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "600ms" } : {}}>
                             <Github className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">GitHub</p>
@@ -127,7 +173,10 @@ export function Contact() {
 
 
                         {/* Ubicación */}
-                        <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
+                        <div className={`flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition ${
+                            isInView ? "animate-slide-left" : "opacity-0-start"
+                        }`}
+                        style={isInView ? { animationDelay: "700ms" } : {}}>
                             <MapPin className="h-6 w-6 text-primary" />
                             <div>
                                 <p className="text-sm text-muted-foreground">Ubicación</p>

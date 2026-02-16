@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { YouTubePlayer } from "@/components/youtube-player";
+import { ImageLightbox } from "@/components/image-lightbox";
 import { projects, getProjectById } from "@/lib/projects";
 import type { Metadata } from "next";
 
@@ -112,36 +113,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {/* Gallery placeholder */}
               <div className="mt-12">
                 <h3 className="text-lg font-semibold mb-6">Gallery</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {project.galleryVideos &&
-                    project.galleryVideos.map((i) => (
-                      <div
-                        key={i}
-                        className="aspect-video bg-secondary rounded-lg border border-border flex items-center justify-center"
-                      >
-                        <YouTubePlayer
+                {project.galleryVideos &&
+                  project.galleryVideos.length > 0 && (
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      {project.galleryVideos.map((i) => (
+                        <div
                           key={i}
-                          videoId={i}
-                          title={"testing title"}
-                        />{" "}
-                      </div>
-                    ))}
-                  {project.galleryImages &&
-                    project.galleryImages.map((i) => (
-                      <div
-                        key={i}
-                        className="relative aspect-video bg-secondary rounded-lg border border-border overflow-hidden"
-                      >
-                        <Image
-                          src={`/gallery/${i}`}
-                          alt={"hello"}
-                          width="500"
-                          height="200"
-                          priority
-                        />
-                      </div>
-                    ))}
-                </div>
+                          className="aspect-video bg-secondary rounded-lg border border-border flex items-center justify-center"
+                        >
+                          <YouTubePlayer
+                            key={i}
+                            videoId={i}
+                            title={"testing title"}
+                          />{" "}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                {project.galleryImages &&
+                  project.galleryImages.length > 0 && (
+                    <ImageLightbox images={project.galleryImages} />
+                  )}
               </div>
             </div>
             {/* Sidebar */}
@@ -160,35 +152,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       {tag}
                     </span>
                   ))}
-                </div>
-              </div>
-
-              {/* Project Links */}
-              <div className="bg-card p-6 rounded-lg border border-border">
-                <h3 className="text-sm font-mono text-primary uppercase tracking-wider mb-4">
-                  Links
-                </h3>
-                <div className="space-y-3">
-                  <Button
-                    variant="outline"
-                    className="w-full justify-between bg-transparent"
-                    asChild
-                  >
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      ArtStation
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="w-full justify-between bg-transparent"
-                    asChild
-                  >
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      YouTube Demo
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
                 </div>
               </div>
 
@@ -220,7 +183,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   >
                     <div className="aspect-video relative overflow-hidden">
                       <Image
-                        src={related.thumbnail || "/placeholder.svg"}
+                        src={`/cover/${related.cardImage}`}
                         alt={related.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
