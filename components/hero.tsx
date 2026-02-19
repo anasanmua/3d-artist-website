@@ -3,13 +3,10 @@
 import { ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useInView } from "@/lib/useInView"
 
 export function Hero() {
-  const { ref, isInView } = useInView({ threshold: 0.5 })
-
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-background">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
@@ -26,9 +23,7 @@ export function Hero() {
         }}
       />
 
-      <div className={`relative z-10 container mx-auto px-6 text-center transition-all duration-700 ${
-        isInView ? "animate-fade-in" : "opacity-0-start"
-      }`}>
+      <div className="relative z-10 container mx-auto px-6 text-center">
         <p className="text-primary font-mono text-sm tracking-widest uppercase mb-4">
           3D Artist & Technical Director
         </p>

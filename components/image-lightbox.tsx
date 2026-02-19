@@ -141,7 +141,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
             {/* Botón cerrar */}
             <button
               onClick={() => setSelectedIndex(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition z-10"
+              className="absolute -top-12 right-0 text-white hover:text-white transition z-10"
               aria-label="Cerrar"
             >
               <X className="h-8 w-8" />
@@ -231,7 +231,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
             </div>
 
             {/* Help text */}
-            <p className="text-center text-xs text-gray-400 mt-4">
+            <p className="text-center text-xs text-white mt-4">
               Scroll para zoom | Arrastra para mover | Doble click para resetear
             </p>
           </div>

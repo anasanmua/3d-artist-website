@@ -11,8 +11,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <PortfolioGrid />
         <About />
+        <PortfolioGrid />
         <Contact />
       </main>
       <Footer />

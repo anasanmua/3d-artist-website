@@ -6,23 +6,19 @@ import Image from "next/image"
 import { ArrowUpRight, Play } from "lucide-react"
 import { projects, categories } from "@/lib/projects"
 import { cn } from "@/lib/utils"
-import { useInView } from "@/lib/useInView"
 
 export function PortfolioGrid() {
   const [activeCategory, setActiveCategory] = useState("All")
-  const { ref, isInView } = useInView({ threshold: 0.1 })
 
   const filteredProjects = activeCategory === "All"
     ? projects
     : projects.filter(p => p.category === activeCategory)
 
   return (
-    <section ref={ref} id="work" className="py-24 md:py-32">
+    <section id="work" className="py-24 md:py-32">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className={`mb-12 md:mb-16 transition-all duration-700 ${
-          isInView ? "animate-slide-up" : "opacity-0-start translate-y-10-start"
-        }`}>
+        <div className="mb-12 md:mb-16">
           <p className="text-primary font-mono text-sm tracking-widest uppercase mb-3">
             Portfolio
           </p>
@@ -59,10 +55,7 @@ export function PortfolioGrid() {
             <Link
               key={project.id}
               href={`/project/${project.id}`}
-              className={`group relative bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 ${
-                isInView ? "animate-scale" : "opacity-0-start"
-              }`}
-              style={isInView ? { animationDelay: `${index * 100}ms` } : {}}
+              className="group relative bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300"
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
