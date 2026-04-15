@@ -2,7 +2,10 @@
 
 import { ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+}
 
 export function Hero() {
   return (
@@ -37,11 +40,11 @@ export function Hero() {
           Bringing imagination to life with technical precision.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button asChild size="lg" className="min-w-[160px]">
-            <Link href="#work">View Work</Link>
+          <Button size="lg" className="min-w-[160px]" onClick={() => scrollTo("work")}>
+            View Work
           </Button>
-          <Button asChild variant="outline" size="lg" className="min-w-[160px] bg-transparent">
-            <Link href="#contact">Contact Me</Link>
+          <Button variant="outline" size="lg" className="min-w-[160px] bg-transparent" onClick={() => scrollTo("contact")}>
+            Contact Me
           </Button>
         </div>
       </div>
