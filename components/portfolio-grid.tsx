@@ -6,9 +6,12 @@ import Image from "next/image"
 import { ArrowUpRight, Play } from "lucide-react"
 import { projects, categories } from "@/lib/projects"
 import { cn } from "@/lib/utils"
+import { useLang } from "@/lib/i18n-provider"
+import { dictionary } from "@/lib/i18n"
 
 export function PortfolioGrid() {
   const [activeCategory, setActiveCategory] = useState("All")
+  const { t } = useLang()
 
   const filteredProjects = activeCategory === "All"
     ? projects
@@ -20,14 +23,13 @@ export function PortfolioGrid() {
         {/* Section Header */}
         <div className="mb-12 md:mb-16">
           <p className="text-primary font-mono text-sm tracking-widest uppercase mb-3">
-            Portfolio
+            {t(dictionary.work.label)}
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-            Selected Work
+          <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-6">
+            {t(dictionary.work.title)}
           </h2>
           <p className="text-muted-foreground max-w-2xl leading-relaxed">
-            A curated selection of projects spanning VFX, animation, rigging, modeling, and more. 
-            Each piece represents a unique challenge and creative solution.
+            {t(dictionary.work.desc)}
           </p>
         </div>
 
@@ -44,7 +46,9 @@ export function PortfolioGrid() {
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
               )}
             >
-              {category}
+              {dictionary.work.categories[category]
+                ? t(dictionary.work.categories[category])
+                : category}
             </button>
           ))}
         </div>
@@ -71,7 +75,7 @@ export function PortfolioGrid() {
                 )}
                 <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="flex items-center gap-2 text-foreground">
-                    <span className="text-sm font-medium">View Project</span>
+                    <span className="text-sm font-medium">{t(dictionary.work.viewProject)}</span>
                     <ArrowUpRight className="h-4 w-4" />
                   </div>
                 </div>

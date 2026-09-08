@@ -6,15 +6,20 @@ import Link from "next/link"
 import { useState, useCallback } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useLang } from "@/lib/i18n-provider"
+import { dictionary, type Locale } from "@/lib/i18n"
+import { cn } from "@/lib/utils"
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#work", label: "Work" },
-  { href: "#contact", label: "Contact" },
-]
+const navKeys = ["about", "work", "contact"] as const
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { locale, setLocale, t } = useLang()
+
+  const navLinks = navKeys.map((key) => ({
+    href: `#${key}`,
+    label: t(dictionary.nav[key]),
+  }))
 
   const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
@@ -33,11 +38,22 @@ export function Header() {
     setMobileMenuOpen(false)
   }, [])
 
+  const toggleLocale = () => {
+    const next: Locale = locale === "es" ? "en" : "es"
+    setLocale(next)
+    setMobileMenuOpen(false)
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-mono font-semibold tracking-tight text-foreground">
-          JRG
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 font-display text-lg font-bold uppercase tracking-wide text-foreground"
+        >
+          <span className="grid h-8 w-8 place-items-center clip-notch border border-primary/50 bg-primary/10 font-mono text-xs text-primary">
+            JRG
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -52,9 +68,21 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <Button asChild size="sm">
+
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLocale}
+            className="flex items-center clip-notch border border-border bg-secondary font-mono text-xs font-semibold uppercase tracking-wider"
+            aria-label="Toggle language"
+          >
+            <span className={cn("px-2.5 py-1.5 transition-colors", locale === "es" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground")}>ES</span>
+            <span className="text-border">/</span>
+            <span className={cn("px-2.5 py-1.5 transition-colors", locale === "en" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground")}>EN</span>
+          </button>
+
+          <Button asChild size="sm" className="clip-notch">
             <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
-              Get in Touch
+              {t(dictionary.nav.getInTouch)}
             </a>
           </Button>
         </div>
@@ -85,9 +113,21 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <Button asChild className="w-full">
+
+            {/* Language Toggle (mobile) */}
+            <button
+              onClick={toggleLocale}
+              className="self-start flex items-center clip-notch border border-border bg-secondary font-mono text-xs font-semibold uppercase tracking-wider"
+              aria-label="Toggle language"
+            >
+              <span className={cn("px-2.5 py-1.5 transition-colors", locale === "es" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}>ES</span>
+              <span className="text-border">/</span>
+              <span className={cn("px-2.5 py-1.5 transition-colors", locale === "en" ? "bg-primary text-primary-foreground" : "text-muted-foreground")}>EN</span>
+            </button>
+
+            <Button asChild className="w-full clip-notch">
               <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
-                Get in Touch
+                {t(dictionary.nav.getInTouch)}
               </a>
             </Button>
           </div>

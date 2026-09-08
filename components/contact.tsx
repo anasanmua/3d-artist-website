@@ -2,9 +2,12 @@
 
 import React, { useState } from "react"
 import { Phone, Mail, User, MapPin, Github, Linkedin, MessageCircle } from "lucide-react"
+import { useLang } from "@/lib/i18n-provider"
+import { dictionary } from "@/lib/i18n"
 
 export function Contact() {
     const [copiedEmail, setCopiedEmail] = useState(false)
+    const { t } = useLang()
 
     const handleCopyEmail = async () => {
         try {
@@ -24,15 +27,15 @@ export function Contact() {
                     {/* Header */}
                     <div className="text-center mb-12">
                         <p className="text-primary font-mono text-sm tracking-widest uppercase mb-3">
-                            Contacto
+                            {t(dictionary.contact.label)}
                         </p>
 
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Información de contacto
+                        <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">
+                            {t(dictionary.contact.title)}
                         </h2>
 
                         <p className="text-muted-foreground leading-relaxed">
-                            Puedes contactarme directamente a través de cualquiera de estos medios.
+                            {t(dictionary.contact.desc)}
                         </p>
                     </div>
 
@@ -43,7 +46,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <User className="h-6 w-6 text-primary" />
                             <div>
-                                <p className="text-sm text-muted-foreground">Nombre</p>
+                                <p className="text-sm text-muted-foreground">{t(dictionary.contact.name)}</p>
                                 <p className="text-lg font-medium">
                                     Jaime Rosado Garcie
                                 </p>
@@ -54,7 +57,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <Phone className="h-6 w-6 text-primary" />
                             <div>
-                                <p className="text-sm text-muted-foreground">Teléfono</p>
+                                <p className="text-sm text-muted-foreground">{t(dictionary.contact.phone)}</p>
                                 <a
                                     href="tel:+346486700966"
                                     className="text-lg font-medium hover:text-primary transition"
@@ -68,7 +71,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <Mail className="h-6 w-6 text-primary" />
                             <div className="flex-1">
-                                <p className="text-sm text-muted-foreground mb-3">Email</p>
+                                <p className="text-sm text-muted-foreground mb-3">{t(dictionary.contact.email)}</p>
                                 <div className="flex flex-wrap gap-3">
                                     <a
                                         href="https://mail.google.com/mail/?view=cm&fs=1&to=jrosadogarcie@gmail.com&su=Proyectos%20y%20Colaboraciones"
@@ -81,9 +84,9 @@ export function Contact() {
                                     <button
                                         onClick={handleCopyEmail}
                                         className="px-3 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition text-xs font-medium"
-                                        title="Copiar al portapapeles"
+                                        title={t(dictionary.contact.copyEmail)}
                                     >
-                                        {copiedEmail ? "✓ Copiado!" : "Copiar email"}
+                                        {copiedEmail ? t(dictionary.contact.copied) : t(dictionary.contact.copyEmail)}
                                     </button>
                                 </div>
                                 <p className="text-xs text-muted-foreground mt-3">jrosadogarcie@gmail.com</p>
@@ -94,7 +97,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <MessageCircle className="h-6 w-6 text-primary" />
                             <div>
-                                <p className="text-sm text-muted-foreground">WhatsApp</p>
+                                <p className="text-sm text-muted-foreground">{t(dictionary.contact.whatsapp)}</p>
 
                                 <a
                                     href="https://wa.me/34648670096"
@@ -102,7 +105,7 @@ export function Contact() {
                                     rel="noopener noreferrer"
                                     className="text-lg font-medium hover:text-primary transition"
                                 >
-                                    Enviar mensaje por WhatsApp
+                                    {t(dictionary.contact.whatsappCta)}
                                 </a>
 
                             </div>
@@ -112,7 +115,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <Linkedin className="h-6 w-6 text-primary" />
                             <div>
-                                <p className="text-sm text-muted-foreground">LinkedIn</p>
+                                <p className="text-sm text-muted-foreground">{t(dictionary.contact.linkedin)}</p>
 
                                 <a
                                     href="https://www.linkedin.com/in/jaime-rosado-garcie/"
@@ -133,7 +136,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <Github className="h-6 w-6 text-primary" />
                             <div>
-                                <p className="text-sm text-muted-foreground">GitHub</p>
+                                <p className="text-sm text-muted-foreground">{t(dictionary.contact.github)}</p>
 
                                 <a
                                     href="https://github.com/jrosadogarcie"
@@ -154,7 +157,7 @@ export function Contact() {
                         <div className="flex items-center gap-4 p-6 border rounded-xl bg-muted/20 hover:bg-muted/30 transition">
                             <MapPin className="h-6 w-6 text-primary" />
                             <div>
-                                <p className="text-sm text-muted-foreground">Ubicación</p>
+                                <p className="text-sm text-muted-foreground">{t(dictionary.contact.location)}</p>
                                 <p className="text-lg font-medium">
                                     Madrid, España
                                 </p>

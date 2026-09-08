@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react"
+import { useLang } from "@/lib/i18n-provider"
+import { dictionary } from "@/lib/i18n"
 
 interface ImageLightboxProps {
   images: string[]
@@ -15,6 +17,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const { t } = useLang()
 
   const goToPrevious = () => {
     setSelectedIndex((prev) =>
@@ -142,7 +145,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
             <button
               onClick={() => setSelectedIndex(null)}
               className="absolute -top-12 right-0 text-white hover:text-white transition z-10"
-              aria-label="Cerrar"
+              aria-label={t(dictionary.lightbox.close)}
             >
               <X className="h-8 w-8" />
             </button>
@@ -153,7 +156,7 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
                 onClick={() => handleZoom("in")}
                 className="p-2 bg-primary/70 hover:bg-primary rounded transition disabled:opacity-50"
                 disabled={zoom >= 300}
-                aria-label="Zoom in"
+                aria-label={t(dictionary.lightbox.zoomIn)}
               >
                 <ZoomIn className="h-5 w-5" />
               </button>
@@ -162,16 +165,16 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
                 onClick={() => handleZoom("out")}
                 className="p-2 bg-primary/70 hover:bg-primary rounded transition disabled:opacity-50"
                 disabled={zoom <= 100}
-                aria-label="Zoom out"
+                aria-label={t(dictionary.lightbox.zoomOut)}
               >
                 <ZoomOut className="h-5 w-5" />
               </button>
               <button
                 onClick={resetZoom}
                 className="px-3 py-2 bg-primary/70 hover:bg-primary rounded text-white text-xs transition"
-                aria-label="Reset zoom"
+                aria-label={t(dictionary.lightbox.reset)}
               >
-                Reset
+                {t(dictionary.lightbox.reset)}
               </button>
             </div>
 
@@ -210,29 +213,29 @@ export function ImageLightbox({ images }: ImageLightboxProps) {
               <button
                 onClick={goToPrevious}
                 className="p-2 bg-primary/70 hover:bg-primary rounded-lg transition flex items-center gap-2"
-                aria-label="Imagen anterior"
+                aria-label={t(dictionary.lightbox.previous)}
               >
                 <ChevronLeft className="h-5 w-5" />
-                Anterior
+                {t(dictionary.lightbox.previous)}
               </button>
 
               <span className="text-sm font-medium">
-                {selectedIndex + 1} de {images.length}
+                {selectedIndex + 1} {t(dictionary.lightbox.of)} {images.length}
               </span>
 
               <button
                 onClick={goToNext}
                 className="p-2 bg-primary/70 hover:bg-primary rounded-lg transition flex items-center gap-2"
-                aria-label="Siguiente imagen"
+                aria-label={t(dictionary.lightbox.next)}
               >
-                Siguiente
+                {t(dictionary.lightbox.next)}
                 <ChevronRight className="h-5 w-5" />
               </button>
             </div>
 
             {/* Help text */}
             <p className="text-center text-xs text-white mt-4">
-              Scroll para zoom | Arrastra para mover | Doble click para resetear
+              {t(dictionary.lightbox.hint)}
             </p>
           </div>
         </div>

@@ -1,11 +1,21 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+import { Chakra_Petch, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { headers } from 'next/headers'
+import { LanguageProvider } from '@/lib/i18n-provider'
+import { localeFromAcceptLanguage, type Locale } from '@/lib/i18n'
 import './globals.css'
 
-const _inter = Inter({ subsets: ["latin"] });
-const _spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const chakraPetch = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-chakra",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+});
 
 export const metadata: Metadata = {
   title: 'Jaime Rosado Garcie | Technical 3D Artist',
@@ -30,15 +40,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const headerList = await headers()
+  const acceptLang = headerList.get('accept-language')
+  const initialLocale: Locale = localeFromAcceptLanguage(acceptLang)
+
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
+    <html lang={initialLocale}>
+      <body className={`${chakraPetch.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <LanguageProvider initialLocale={initialLocale}>
+          {children}
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
